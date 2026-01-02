@@ -27,12 +27,9 @@ jobs:
         run: |
           npm install
           npm run build
-          cd .next/standalone
-          ls -al
 
       - name: copy static and public assets to standalone build folder
         run: |
-          cp -r ./.next/static ./.next/standalone/.next
           cp -r ./public ./.next/standalone
 
       - name: Upload artifact for deployment job
@@ -40,7 +37,7 @@ jobs:
         with:
           name: node-app
           path: ./.next/standalone
-          include-hidden-files: true # This line includes hidden files
+          include-hidden-files: true
 
   deploy:
     runs-on: ubuntu-latest
@@ -54,12 +51,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-      - name: Debug - show downloaded structure
-        run: |
-          pwd
-          ls -la
-          find . -name "BUILD_ID"
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
