@@ -40,6 +40,7 @@ jobs:
         with:
           name: node-app
           path: ./.next/standalone
+          include-hidden-files: true # This line includes hidden files
 
   deploy:
     runs-on: ubuntu-latest
