@@ -25,9 +25,10 @@ jobs:
 
       - name: build standalone folder
         run: |
-          ls -al
           npm install
           npm run build
+          cd .next/standalone
+          ls -al
 
       - name: copy static and public assets to standalone build folder
         run: |
