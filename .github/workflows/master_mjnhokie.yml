@@ -29,6 +29,10 @@ jobs:
           npm run build --if-present
           npm run test --if-present
 
+      - name: copy static and public assets to standalone build folder
+        run: |
+          cp -r ./next/static ./public ./.next/standalone
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
